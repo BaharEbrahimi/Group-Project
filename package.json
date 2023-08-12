@@ -1,0 +1,8 @@
+{
+  "name": "Group-Project",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm run webpack"
+  },
+  // other package.json configurations...
+}
