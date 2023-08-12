@@ -1,0 +1,88 @@
+<!-- appointment-details.component.html -->
+
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentAppointment.id">
+      <h2>Appointment</h2>
+      <div>
+        <label><strong>Name:</strong></label> {{ currentAppointment.name }}
+      </div>
+      <div>
+        <label><strong>Email:</strong></label> {{ currentAppointment.email }}
+      </div>
+      <div>
+        <label><strong>Phone:</strong></label> {{ currentAppointment.phone }}
+      </div>
+      <div>
+        <label><strong>Date:</strong></label> {{ currentAppointment.date }}
+      </div>
+      <div>
+        <label><strong>Time:</strong></label> {{ currentAppointment.time }}
+      </div>
+      <div>
+        <label><strong>Service:</strong></label> {{ currentAppointment.service }}
+      </div>
+      <div>
+        <label><strong>Comments:</strong></label> {{ currentAppointment.comments }}
+      </div>
+  
+      <a class="badge badge-warning" routerLink="/view-appointment/{{ currentAppointment.id }}">Modify Appointment</a>
+    </div>
+  
+    <div *ngIf="!currentAppointment">
+      <br />
+      <p>Please click on an Appointment...</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="currentAppointment.id" class="edit-form">
+      <h4>Appointment</h4>
+      <form>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" [(ngModel)]="currentAppointment.name" name="name" />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" [(ngModel)]="currentAppointment.email" name="email" />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="text" class="form-control" id="phone" [(ngModel)]="currentAppointment.phone" name="phone" />
+        </div>
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" class="form-control" id="date" [(ngModel)]="currentAppointment.date" name="date" />
+        </div>
+        <div class="form-group">
+          <label for="time">Time</label>
+          <input type="time" class="form-control" id="time" [(ngModel)]="currentAppointment.time" name="time" />
+        </div>
+        <div class="form-group">
+          <label for="service">Service</label>
+          <input type="text" class="form-control" id="service" [(ngModel)]="currentAppointment.service" name="service" />
+        </div>
+        <div class="form-group">
+          <label for="comments">Comments</label>
+          <textarea class="form-control" id="comments" [(ngModel)]="currentAppointment.comments" name="comments" rows="4"></textarea>
+        </div>
+      </form>
+  
+      <!-- Add the appropriate buttons -->
+  
+      <!-- Delete button -->
+      <button class="btn btn-danger mr-2" (click)="deleteAppointment()" routerLink="/view-appointment">Delete</button>
+  
+      <!-- Update button -->
+      <button type="submit" class="btn btn-success mb-2" (click)="updateAppointment()" routerLink="/view-appointment">Update</button>
+  
+      <!-- Display the message -->
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentAppointment.id">
+      <br />
+      <p>Cannot access this Appointment...</p>
+    </div>
+  </ng-template>
+  
