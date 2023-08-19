@@ -1,8 +1,12 @@
 {
   "name": "Group-Project",
   "version": "1.0.0",
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^17.0.2",
+    "group-version": "1.0.0"
+  },
   "scripts": {
     "build": "npm run webpack"
-  },
-  // other package.json configurations...
+  }
 }
