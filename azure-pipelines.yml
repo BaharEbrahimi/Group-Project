@@ -6,7 +6,7 @@ trigger:
       - main
 
 pool:
-  name: windows
+  name: Group Project Agent
 
 stages:
 - stage: Build
