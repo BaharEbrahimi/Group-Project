@@ -1,0 +1,61 @@
+
+    <div class="edit-form">
+        <h2>Appointment Booking</h2>
+        <!--<form action="#" method="post"> -->
+        <form (submit)="onSubmit()"> 
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name"  [(ngModel)]="appointment.name" name="name" required> 
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email"  class="form-control" id="email"   [(ngModel)]="appointment.email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" class="form-control" id="phone" [(ngModel)]="appointment.phone" name="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="appointmentDate">Appointment Date:</label>
+                <input type="date" class="form-control" id="appointmentDate"  [(ngModel)]="appointment.date" name="appointmentDate" required>
+            </div>
+            <div class="form-group">
+                <label for="appointmentTime">Appointment Time:</label>
+                <input type="time" class="form-control" id="appointmentTime" [(ngModel)]="appointment.time" name="appointmentTime" required>
+            </div>
+            <div class="form-group">
+                <label for="service">Service:</label>
+                <select id="service" class="form-control"  [(ngModel)]="appointment.service" name="service" required>
+                    <option value="">Select a Dental service</option>
+                    <option value="Dental Check-up and Cleaning">Dental Check-up and Cleaning</option>
+                    <option value="Tooth Fillings">Tooth Fillings</option>
+                    <option value="Teeth Whitening">Teeth Whitening</option>
+                    <option value="Dental Crowns and Bridges">Dental Crowns and Bridges</option>
+                    <option value="Root Canal Treatment">Root Canal Treatment</option>
+                    <option value="Dentures">Dentures</option>
+                    <option value="Orthodontic Treatments">Orthodontic Treatments</option>
+                    <option value="Oral Surgery">Oral Surgery</option>
+                    <option value="Pediatric Dentistry">Pediatric Dentistry</option>
+                    <option value="Cosmetic Dentistry">Cosmetic Dentistry</option>
+                    <option value="Emergency Dental Care">Emergency Dental Care</option>
+                    <!-- Add more service options as needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="comments">Appointment Notes:</label>
+                <textarea id="comments" class="form-control" [(ngModel)]="appointment.comments" name="comments" rows="4"></textarea>
+            </div>
+            <!-- <button type="submit">Book Appointment</button> -->
+            <input type="reset" value="Clear" class="btn btn-danger mr-2">
+            <input type="submit" routerLink="/book-now" class="btn btn-success mb-2" />
+          <!-- Cancel Button -->
+            <a href="index.html">Cancel</a>
+            
+            
+        </form>
+       
+    </div>
+
+
+
+
