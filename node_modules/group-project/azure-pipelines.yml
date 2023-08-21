@@ -1,0 +1,66 @@
+# Node.js with React and Express Build Pipeline
+
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  name: windows
+
+stages:
+- stage: Build
+  jobs:
+  - job: Build_Job
+    displayName: 'Build Job'
+    steps:
+    - task: NodeTool@0
+      inputs:
+        versionSpec: '16.x'
+      displayName: 'Install Node.js'
+
+    - script: |
+        cd react-client
+        npm install
+        npm run build
+      displayName: 'Install and Build Frontend'
+
+    - script: |
+        npm install
+      displayName: 'Install Backend Dependencies'
+
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
+        exclude: |
+          node_modules/**
+          frontend/node_modules/**
+          frontend/build/**
+        verbose: true
+      displayName: 'Archive Code'
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        artifactName: 'combined'
+        pathToPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+      displayName: 'Publish Combined Artifact'
+
+- stage: Test
+  jobs:
+  - job: Test_Job
+    displayName: 'Test Job'
+    steps:
+    - script: |
+        cd react-client
+        npm install
+        npm test
+      displayName: 'Run Frontend Tests'
+
+    - script: |
+        npm install
+        npm test
+      displayName: 'Run Backend Tests'
